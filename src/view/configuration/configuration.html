@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Configure Tealium Collect Extension">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Tealium Collect Extension Configuration</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+      input:invalid {
+        border: 1px solid red;
+      }
+    </style>
+  </head>
+  <body>
+    <br>
+    <div class="container">
+      <div class="form-group">
+        <label>
+          Tealium Account
+          <input id="account" class="form-control" minlength="0" maxlength="500" required>
+          <small class="text-muted">
+            (Required) Your Tealium account name.
+          </small>
+        </label>
+      </div>
+  
+      <div class="form-group">
+        <label>
+          Tealium Profile
+          <input id="profile" class="form-control" value="main" minlength="0" maxlength="500" required>
+          <small class="text-muted">
+            (Required) Your Tealium profile name. Enter "main" if you are unsure.
+          </small>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Data Source Key     
+          <input id="dataSourceKey" class="form-control" minlength="0" maxlength="10">
+          <small class="text-muted">
+            (Optional) Enter the key for this data source from your server-side Tealium configuration. <a href="https://community.tealiumiq.com/t5/Customer-Data-Hub/Data-Sources/ta-p/17933" target="_blank">Learn More</a>
+          </small>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Endpoint
+          <input id="endpoint" class="form-control" minlength="0" maxlength="500" pattern="^https:\/\/.*">
+          <small class="text-muted">
+            (Optional) Override the default Tealium Collect endpoint with your own custom first-party data collection endpoint, such as: https://collect.example.co.uk/event
+          </small>
+        </label>
+      </div>
+
+      <div class="form-group">
+        <label>
+          Data Object
+          <input id="dataObjectName" class="form-control" minlength="0" maxlength="500">
+          <small class="text-muted">
+            (Optional) The name of a JavaScript variable to use as the data layer object. For example, enter 'digitalData' if you use this as your data layer object.  This extension will automatically use the second param in a _satellite.track call for <a href="https://docs.adobe.com/content/help/en/launch/using/reference/client-side-info/launch-object-reference.html#track" target="_blank">Direct Call</a> events.
+          </small>
+        </label>
+      </div>
+    </div>
+
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      var accountInput = document.querySelector('#account'),
+        profileInput = document.querySelector('#profile'),
+        dataSourceKeyInput = document.querySelector('#dataSourceKey'),
+        endpointInput = document.querySelector('#endpoint'),
+        dataObjectInputName = document.querySelector('#dataObjectName');
+
+      window.extensionBridge.register({
+        init: function(info) {
+          console.log("info.settings");
+          console.log(JSON.stringify(info.settings));
+          if (info.settings) {
+            accountInput.value = info.settings.account;
+            profileInput.value = info.settings.profile;
+            dataSourceKeyInput.value = info.settings.dataSourceKey;
+            endpointInput.value = info.settings.endpoint;
+            dataObjectInputName.value = info.settings.dataObjectName;
+          }
+        },
+
+        getSettings: function() {
+          return {
+            account: accountInput.value,
+            profile: profileInput.value,
+            dataSourceKey: dataSourceKeyInput.value,
+            endpoint: endpointInput.value,
+            dataObjectName: dataObjectInputName.value
+          }
+        },
+
+        validate: function() {
+          return accountInput.checkValidity() &&
+            profileInput.checkValidity() &&
+            dataSourceKeyInput.checkValidity() &&
+            endpointInput.checkValidity() &&
+            dataObjectInputName.checkValidity();
+        }
+      });
+    </script>
+  </body>
+</html>
