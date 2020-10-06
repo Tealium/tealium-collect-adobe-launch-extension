@@ -1,6 +1,6 @@
 # Tealium Collect Extension for Adobe Launch
 
-*August 2020*: While this integration has been submitted to Adobe, it is still marked as "Pending" state.  We do not know when Adobe will approve. When Adobe does add to their marketplace, this installation will be a matter of following the intructions below.  Until then, this code would need to be manually added following their developer guide here: [Adobe Experience Platform Launch Extensions](https://developer.adobelaunch.com/extensions/)
+*August 2020*: While this integration has been submitted to Adobe, it is still marked as "Pending" state.  We do not know when Adobe will approve. When Adobe does add to their marketplace, this installation will be a matter of following the instructions below.  Until then, this code would need to be manually uploaded following their developer guide here: [Adobe Experience Platform Launch Extensions](https://developer.adobelaunch.com/extensions/)
 
 ## Overview
 
