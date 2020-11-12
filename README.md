@@ -1,6 +1,6 @@
 # Tealium Collect Extension for Adobe Launch
 
-Link to Adobe Exchange Marketplace: [Tealium Collect Extensions](https://exchange.adobe.com/experiencecloud.details.104217.tealium-collect-extension-for-adobe-launch.html)
+Link to Adobe Exchange Marketplace: [Tealium Collect Extension](https://exchange.adobe.com/experiencecloud.details.104217.tealium-collect-extension-for-adobe-launch.html)
 
 ## Overview
 
