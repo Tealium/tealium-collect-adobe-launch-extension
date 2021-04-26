@@ -65,6 +65,15 @@
           </small>
         </label>
       </div>
+
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="addEventListenerACDL"> Add Event Listener for adobeDataLayer
+          <small class="text-muted"><br>
+            (Optional) Automatically track events in adobeDataLayer.  Tracks both default and custom  <a href="https://experienceleague.adobe.com/docs/experience-manager-core-components/using/developing/data-layer/overview.html?lang=en" target="_blank">Adobe Client Data Layer</a> events.
+          </small>
+        </label>
+      </div>
     </div>
 
 
@@ -75,6 +84,7 @@
         dataSourceKeyInput = document.querySelector('#dataSourceKey'),
         endpointInput = document.querySelector('#endpoint'),
         dataObjectInputName = document.querySelector('#dataObjectName');
+        addEventListenerACDL = document.querySelector('#addEventListenerACDL');
 
       window.extensionBridge.register({
         init: function(info) {
@@ -86,6 +96,7 @@
             dataSourceKeyInput.value = info.settings.dataSourceKey;
             endpointInput.value = info.settings.endpoint;
             dataObjectInputName.value = info.settings.dataObjectName;
+            addEventListenerACDL.checked = info.settings.addEventListenerACDL;
           }
         },
 
@@ -95,7 +106,8 @@
             profile: profileInput.value,
             dataSourceKey: dataSourceKeyInput.value,
             endpoint: endpointInput.value,
-            dataObjectName: dataObjectInputName.value
+            dataObjectName: dataObjectInputName.value,
+            addEventListenerACDL: addEventListenerACDL.checked
           }
         },
 
@@ -104,9 +116,11 @@
             profileInput.checkValidity() &&
             dataSourceKeyInput.checkValidity() &&
             endpointInput.checkValidity() &&
-            dataObjectInputName.checkValidity();
+            dataObjectInputName.checkValidity() &&
+            addEventListenerACDL.checkValidity();
         }
       });
     </script>
   </body>
 </html>
+

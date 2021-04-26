@@ -2,11 +2,12 @@
   "displayName": "Tealium Collect",
   "name": "tealium-collect",
   "platform": "web",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The data collection extension for Tealium\u0027s Customer Data Hub (CDH)",
   "iconPath": "tealium.svg",
   "author": {
-    "name": "Tealium, Inc"
+    "name": "Tealium, Inc",
+    "email": "support@tealium.com"
   },
   "exchangeUrl":"https://www.adobeexchange.com/experiencecloud.details.104217.html",
   "viewBasePath": "src/view/",
@@ -35,6 +36,9 @@
         "dataObjectName" : {
           "type" : "string",
           "minLength" : 0
+        },
+        "addEventListenerACDL" : {
+          "type" : "boolean"
         }
       },
       "required" : ["account", "profile"]
