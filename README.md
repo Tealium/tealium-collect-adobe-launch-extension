@@ -32,9 +32,14 @@ This is a name of a global object to use for the data layer.  By default, the Te
 
 This Extension also supports tracking events that were initiated via [\_satellite.track](https://docs.adobe.com/content/help/en/launch/using/reference/client-side-info/launch-object-reference.html) function call.  The first param will be the event name and the second param will be used for the data layer.  The Tealium Collect Extension also collects the \_satellite.buildInfo information and adds to the data layer.
 
+4. Event listener for "adobeDataLayer:event"
+
+Option to add an event listener for all events set via [adobeDataLayer.push](https://github.com/adobe/adobe-client-data-layer).  The Adobe Client Data Layer is documented [here](https://experienceleague.adobe.com/docs/experience-manager-core-components/using/developing/data-layer/overview.html?lang=en#events).
+
+
 ## Copyright and license
 
-Copyright 2020 Tealium, Inc. All rights reserved.
+Copyright 2021 Tealium, Inc. All rights reserved.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 

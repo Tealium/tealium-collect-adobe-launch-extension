@@ -3,6 +3,32 @@ var window = require('@adobe/reactor-window');
 var loadScript = require('@adobe/reactor-load-script');
 var extensionSettings = turbine.getExtensionSettings();
 
+function tealiumEventHandler(event) {
+  function getDataObjectHelper(event) {
+    turbine.logger.log('Data Object Helper event: ' + JSON.stringify(event));
+    if (event.hasOwnProperty("eventInfo")) {
+      var data = window.adobeDataLayer.getState();
+      turbine.logger.log('Data Object Helper data: ' + JSON.stringify(data));
+      if (data !== null) {
+        for (var key in event.eventInfo) {
+           if (event.eventInfo.hasOwnProperty(key)) {
+             data[key] = event.eventInfo[key]; 
+           }
+        }
+        return data;
+      }
+    }
+  }
+
+  var dataObject = getDataObjectHelper(event);
+  if (dataObject !== null) {
+    // Capture custom events and built-in: cmp:click, cmp:show, cmp:hide
+    if (event.event !== "cmp:loaded") {
+      window.tealium.track(event.event, dataObject);
+    }
+  }
+}
+
 module.exports = function(settings, event) {
   var eventData = {},
     eventName = event["$rule"].name;
@@ -51,9 +77,16 @@ module.exports = function(settings, event) {
 
     // Both Tealium function and tealium.track function created inside Tealium Collect JS library
     loadScript('https://tags.tiqcdn.com/libs/tealiumjs/latest/tealium_collect.min.js').then(function(){
-      var config = [];
+      var config = [],
+        endpoint = extensionSettings.endpoint;
 
       turbine.logger.log('Tealium Collect library loading complete.');
+
+      // Bug fix for https://example-collect.tealiumiq.com
+      if (endpoint && endpoint.indexOf("collect.tealiumiq.com")>8) {
+        endpoint = endpoint.replace("https://","");
+      }
+
       config.push(["config", "init", [extensionSettings.account, extensionSettings.profile, "prod", extensionSettings.dataSourceKey]]);
       
       if (window._satellite && window._satellite.buildInfo && window._satellite.buildInfo.environment === "development") {
@@ -85,10 +118,18 @@ module.exports = function(settings, event) {
         }
       }]]);
 
-      config.push(["config", "addTag", {name: "tealium_collect", version: "1.0.3", server: extensionSettings.endpoint}]);
+      config.push(["config", "addTag", {name: "tealium_collect", version: "1.0.3", server: endpoint}]);
 
       // Process queue of events and create new global tealium object with tealium.track function defined
       window.tealium = window.Tealium(config.concat(window.tealium.q));
+
+      // If enabled, add code to listen for events on adobeDataLayer.push calls
+      if (extensionSettings.addEventListenerACDL) {
+        window.adobeDataLayer = window.adobeDataLayer || [];
+        window.adobeDataLayer.push(function (dl) {
+          dl.addEventListener("adobeDataLayer:event", tealiumEventHandler);
+        });
+      }
     });
   }
  
