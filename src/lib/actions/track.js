@@ -118,7 +118,7 @@ module.exports = function(settings, event) {
         }
       }]]);
 
-      config.push(["config", "addTag", {name: "tealium_collect", version: "1.0.3", server: endpoint}]);
+      config.push(["config", "addTag", {name: "tealium_collect", server: endpoint}]);
 
       // Process queue of events and create new global tealium object with tealium.track function defined
       window.tealium = window.Tealium(config.concat(window.tealium.q));
