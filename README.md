@@ -41,7 +41,7 @@ Option to add an event listener for all events set via [adobeDataLayer.push](htt
 
 ## Copyright and license
 
-Copyright 2021 Tealium, Inc. All rights reserved.
+Copyright 2023 Tealium, Inc. All rights reserved.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 

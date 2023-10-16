@@ -89,7 +89,7 @@ module.exports = function(settings, event) {
 
       config.push(["config", "init", [extensionSettings.account, extensionSettings.profile, "prod", extensionSettings.dataSourceKey]]);
       
-      if (window._satellite && window._satellite.buildInfo && window._satellite.buildInfo.environment === "development") {
+      if (window._satellite && window._satellite.environment && window._satellite.environment.stage === "development") {
         config.push(["config", "debug", true]);
       }
 
@@ -134,4 +134,3 @@ module.exports = function(settings, event) {
   }
  
 };
-
