@@ -75,8 +75,11 @@ module.exports = function(settings, event) {
     window.Tealium = {};
     turbine.logger.log('Tealium Collect library loading...');
 
+    var collectScript = 'https://tags.tiqcdn.com/libs/tealiumjs/latest/tealium_collect.min.js';
+    if (extensionSettings.collectUrl) {collectScript = extensionSettings.collectUrl;}
+
     // Both Tealium function and tealium.track function created inside Tealium Collect JS library
-    loadScript('https://tags.tiqcdn.com/libs/tealiumjs/latest/tealium_collect.min.js').then(function(){
+    loadScript(collectScript).then(function(){
       var config = [],
         endpoint = extensionSettings.endpoint;
 

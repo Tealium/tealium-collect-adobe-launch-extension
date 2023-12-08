@@ -2,7 +2,7 @@
   "displayName": "Tealium Collect",
   "name": "tealium-collect",
   "platform": "web",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "The data collection extension for Tealium\u0027s Customer Data Hub (CDH)",
   "iconPath": "tealium.svg",
   "author": {
@@ -26,6 +26,10 @@
           "minLength" : 0
         },
         "dataSourceKey" : {
+          "type" : "string",
+          "minLength" : 0
+        },
+        "collectUrl" : {
           "type" : "string",
           "minLength" : 0
         },
