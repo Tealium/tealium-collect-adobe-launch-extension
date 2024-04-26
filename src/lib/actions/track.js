@@ -6,7 +6,6 @@ var extensionSettings = turbine.getExtensionSettings();
 function tealiumEventHandler(event) {
   function getDataObjectHelper(event) {
     turbine.logger.log('Data Object Helper event: ' + JSON.stringify(event));
-    if (event.hasOwnProperty("eventInfo")) {
       var data = window.adobeDataLayer.getState();
       turbine.logger.log('Data Object Helper data: ' + JSON.stringify(data));
       if (data !== null) {
@@ -23,7 +22,6 @@ function tealiumEventHandler(event) {
         }
         return data;
       }
-    }
   }
 
   var dataObject = getDataObjectHelper(event);
