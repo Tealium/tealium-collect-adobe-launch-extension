@@ -30,7 +30,7 @@ function tealiumEventHandler(event) {
   if (dataObject !== null) {
     // Capture custom events and built-in: cmp:click, cmp:show, cmp:hide
     if (event.event !== "cmp:loaded") {
-      window.tealium.track(event.event, window.tealium.flatten(dataObject,5,true));
+      window.tealium.track(event.event, window.tealium.util.flatten(dataObject,5,true));
     }
   }
 }
