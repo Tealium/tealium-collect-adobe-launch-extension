@@ -6,25 +6,29 @@ var extensionSettings = turbine.getExtensionSettings();
 function tealiumEventHandler(event) {
   function getDataObjectHelper(event) {
     turbine.logger.log('Data Object Helper event: ' + JSON.stringify(event));
-    if (event.hasOwnProperty("eventInfo")) {
       var data = window.adobeDataLayer.getState();
       turbine.logger.log('Data Object Helper data: ' + JSON.stringify(data));
       if (data !== null) {
-        for (var key in event.eventInfo) {
-           if (event.eventInfo.hasOwnProperty(key)) {
-             data[key] = event.eventInfo[key]; 
-           }
+        for (let key in event) {
+          if (key == "eventInfo") {
+            for (let k in event[key]) {
+               if (event[key].hasOwnProperty(k)) {
+                 data[k] = event[key][k];
+               }
+            }
+          } else {
+            data[key] = event[key];
+          }
         }
         return data;
       }
-    }
   }
 
   var dataObject = getDataObjectHelper(event);
   if (dataObject !== null) {
     // Capture custom events and built-in: cmp:click, cmp:show, cmp:hide
     if (event.event !== "cmp:loaded") {
-      window.tealium.track(event.event, dataObject);
+      window.tealium.track(event.event, window.tealium.util.flatten(dataObject,5,true));
     }
   }
 }
@@ -36,6 +40,8 @@ module.exports = function(settings, event) {
   turbine.logger.log('Tealium Collect settings: ( ' + JSON.stringify(extensionSettings) + ')');
    
   eventData.dataObject = window[extensionSettings.dataObjectName] || {};
+  //if data layer is an array, grab the first element
+  if (Array.isArray(eventData.dataObject)) {eventData.dataObject = eventData.dataObject[0]}
 
   // For a "Direct Call" action using _satellite.track, use event.detail for the data layer
   if (event["$type"] === "core.direct-call") {
