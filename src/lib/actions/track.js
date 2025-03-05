@@ -116,7 +116,7 @@ module.exports = function(settings, event) {
             t.util.merge(d, _satellite.buildInfo);
           }
           // Only goes 5 levels deep, non-flattened items will still be references to original
-          // Two rounds of "flatten" to help with W3C digitalData arrays of multi-level objects
+          // Two rounds of "flatten" to help with W3C data layer arrays of multi-level objects
           t.util.merge(d, t.util.flatten(t.util.flatten(d.dataObject, 5, true), 5, true));
   
           // Remove reference to original object
