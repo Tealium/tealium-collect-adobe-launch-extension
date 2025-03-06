@@ -28,7 +28,7 @@ Configure with your first-party data collection endpoint.  Include the "/event" 
 
 2. Custom Data Object
 
-This is a name of a global object to use for the data layer.  By default, the Tealium Collect tag template uses the global 'digitalData' object as the data layer. 
+This is a name of a global object to use for the data layer.
 
 3. Support for Direct Call Rule with \_satellite.track
 
@@ -41,7 +41,7 @@ Option to add an event listener for all events set via [adobeDataLayer.push](htt
 
 ## Copyright and license
 
-Copyright 2023 Tealium, Inc. All rights reserved.
+Copyright 2025 Tealium, Inc. All rights reserved.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
