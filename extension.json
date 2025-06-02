@@ -2,14 +2,14 @@
   "displayName": "Tealium Collect",
   "name": "tealium-collect",
   "platform": "web",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "The data collection extension for Tealium\u0027s Customer Data Hub (CDH)",
   "iconPath": "tealium.svg",
   "author": {
     "name": "Tealium, Inc",
     "email": "support@tealium.com"
   },
-  "exchangeUrl":"https://www.adobeexchange.com/experiencecloud.details.104217.html",
+  "exchangeUrl":"https://exchange.adobe.com/apps/ec/104217",
   "viewBasePath": "src/view/",
   "configuration": {
     "viewPath": "configuration/configuration.html",
@@ -53,10 +53,20 @@
       "name" : "track",
       "displayName" : "Track Event",
       "libPath" : "src/lib/actions/track.js",
+      "viewPath": "actions/track/track.html",
       "schema" : {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+         "properties": {
+          "account": {
+            "type": "string",
+            "title": "Override Account"
+          },
+          "profile": {
+            "type": "string",
+            "title": "Override Profile"
+          }
+        }
       }
     }
   ]

@@ -6,86 +6,124 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Tealium Collect Extension Configuration</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="../styles/bootstrap.min.css" rel="stylesheet" />
+
+
     <style>
       input:invalid {
         border: 1px solid red;
       }
     </style>
   </head>
-  <body>
-    <br>
-    <div class="container">
-      <div class="form-group">
-        <label>
-          Tealium Account
-          <input id="account" class="form-control" minlength="0" maxlength="500" required>
-          <small class="text-muted">
-            (Required) Your Tealium account name.
-          </small>
-        </label>
-      </div>
-  
-      <div class="form-group">
-        <label>
-          Tealium Profile
-          <input id="profile" class="form-control" value="main" minlength="0" maxlength="500" required>
-          <small class="text-muted">
-            (Required) Your Tealium profile name. Enter "main" if you are unsure.
-          </small>
-        </label>
-      </div>
+<body class="p-3">
+  <h1 class="mb-4">Tealium Collect Extension Configuration</h1>
+  <form>
+    <div class="mb-3">
+      <label for="account" class="form-label">Tealium Account</label>
+      <input
+        type="text"
+        id="account"
+        class="form-control"
+        minlength="0"
+        maxlength="500"
+        required
+      />
+      <div class="form-text">Your Tealium account name (Required).</div>
+    </div>
 
-      <div class="form-group">
-        <label>
-          Data Source Key     
-          <input id="dataSourceKey" class="form-control" minlength="0" maxlength="10">
-          <small class="text-muted">
-            (Optional) Enter the key for this data source from your server-side Tealium configuration. <a href="https://community.tealiumiq.com/t5/Customer-Data-Hub/Data-Sources/ta-p/17933" target="_blank">Learn More</a>
-          </small>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          Collect Tag URL
-          <input id="collectUrl" class="form-control" minlength="0" maxlength="500" pattern="^https:\/\/.*">
-          <small class="text-muted">
-            (Optional) Override the default Tealium Collect tag URL with your own custom first-party data hosted file URL, such as: https://example.co.uk/collect.min.js
-          </small>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          Endpoint
-          <input id="endpoint" class="form-control" minlength="0" maxlength="500" pattern="^https:\/\/.*">
-          <small class="text-muted">
-            (Optional) Override the default Tealium Collect event endpoint with your own custom first-party data collection endpoint, such as: https://collect.example.co.uk/event
-          </small>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          Data Object
-          <input id="dataObjectName" class="form-control" minlength="0" maxlength="500">
-          <small class="text-muted">
-            (Optional) The name of a JavaScript variable to use as the data layer object. For example, enter 'digitalData' if you use this as your data layer object.  This extension will automatically use the second param in a _satellite.track call for <a href="https://docs.adobe.com/content/help/en/launch/using/reference/client-side-info/launch-object-reference.html#track" target="_blank">Direct Call</a> events.
-          </small>
-        </label>
-      </div>
-
-      <div class="form-group">
-        <label>
-          <input type="checkbox" id="addEventListenerACDL"> Add Event Listener for adobeDataLayer
-          <small class="text-muted"><br>
-            (Optional) Automatically track events in adobeDataLayer.  Tracks both default and custom  <a href="https://experienceleague.adobe.com/docs/experience-manager-core-components/using/developing/data-layer/overview.html?lang=en" target="_blank">Adobe Client Data Layer</a> events.
-          </small>
-        </label>
+    <div class="mb-3">
+      <label for="profile" class="form-label">Tealium Profile</label>
+      <input
+        type="text"
+        id="profile"
+        class="form-control"
+        value="main"
+        minlength="0"
+        maxlength="500"
+        required
+      />
+      <div class="form-text">
+        Your Tealium profile name (Required). Enter "main" if you are unsure.
       </div>
     </div>
 
+    <div class="mb-3">
+      <label for="dataSourceKey" class="form-label">Data Source Key</label>
+      <input
+        type="text"
+        id="dataSourceKey"
+        class="form-control"
+        minlength="0"
+        maxlength="10"
+      />
+      <div class="form-text">
+        Optional: Enter the key for this data source from your server-side Tealium
+        configuration.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="collectUrl" class="form-label">Collect Tag URL</label>
+      <input
+        type="url"
+        id="collectUrl"
+        class="form-control"
+        minlength="0"
+        maxlength="500"
+        pattern="^https:\/\/.*"
+      />
+      <div class="form-text">
+        Optional: Override the default Tealium Collect tag URL with your own custom
+        first-party data hosted file URL.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="endpoint" class="form-label">Endpoint</label>
+      <input
+        type="url"
+        id="endpoint"
+        class="form-control"
+        minlength="0"
+        maxlength="500"
+        pattern="^https:\/\/.*"
+      />
+      <div class="form-text">
+        Optional: Override the default Tealium Collect event endpoint with your own
+        custom first-party data collection endpoint.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="dataObjectName" class="form-label">Data Object</label>
+      <input
+        type="text"
+        id="dataObjectName"
+        class="form-control"
+        minlength="0"
+        maxlength="500"
+      />
+      <div class="form-text">
+        Optional: The name of a JavaScript variable to use as the data layer object.
+      </div>
+    </div>
+
+    <div class="form-check mb-3">
+      <input
+        type="checkbox"
+        id="addEventListenerACDL"
+        class="form-check-input"
+      />
+      <label for="addEventListenerACDL" class="form-check-label"
+        >Add Event Listener for adobeDataLayer</label
+      >
+      <div class="form-text">
+        Optional: Automatically track all events in adobeDataLayer.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Save Settings</button>
+  </form>
 
     <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
     <script>

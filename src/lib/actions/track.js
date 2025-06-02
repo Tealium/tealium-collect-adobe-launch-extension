@@ -34,6 +34,7 @@ function tealiumEventHandler(event) {
 }
 
 module.exports = function(settings, event) {
+ 
   var eventData = {},
     eventName = event["$rule"].name;
 
@@ -62,6 +63,13 @@ module.exports = function(settings, event) {
        }
      }
   */
+
+  if (settings?.account) {
+    eventData.tealium_account = settings.account;
+  }
+  if (settings?.profile) {
+    eventData.tealium_profile = settings.profile;
+  }
 
   // Create global object before loading tealium.js
   window.tealium = window.tealium || {q:[]};
