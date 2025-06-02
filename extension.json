@@ -53,20 +53,10 @@
       "name" : "track",
       "displayName" : "Track Event",
       "libPath" : "src/lib/actions/track.js",
-      "viewPath": "actions/track/track.html",
       "schema" : {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-         "properties": {
-          "account": {
-            "type": "string",
-            "title": "Override Account"
-          },
-          "profile": {
-            "type": "string",
-            "title": "Override Profile"
-          }
-        }
+         "properties": {}
       }
     }
   ]
