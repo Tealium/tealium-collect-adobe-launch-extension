@@ -64,12 +64,11 @@ module.exports = function(settings, event) {
      }
   */
 
-  if (settings?.account) {
-    eventData.tealium_account = settings.account;
-  }
-  if (settings?.profile) {
-    eventData.tealium_profile = settings.profile;
-  }
+  //setting event data attributes to support dynamically populating these via data element in config 
+  eventData.tealium_account = extensionSettings.account;
+  eventData.tealium_profile = extensionSettings.profile;
+  eventData.tealium_datasource = extensionSettings.dataSourceKey;
+  
 
   // Create global object before loading tealium.js
   window.tealium = window.tealium || {q:[]};
