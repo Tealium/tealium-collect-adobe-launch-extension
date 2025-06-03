@@ -28,7 +28,7 @@
         maxlength="500"
         required
       />
-      <div class="form-text">Your Tealium account name (Required).</div>
+      <div class="form-text">(Required) Your Tealium account name.</div>
     </div>
 
     <div class="mb-3">
@@ -43,7 +43,7 @@
         required
       />
       <div class="form-text">
-        Your Tealium profile name (Required). Enter "main" if you are unsure.
+        (Required) Your Tealium profile name. Enter "main" if you are unsure.
       </div>
     </div>
 
@@ -57,8 +57,7 @@
         maxlength="10"
       />
       <div class="form-text">
-        Optional: Enter the key for this data source from your server-side Tealium
-        configuration.
+        (Optional) Enter the key for this data source from your server-side Tealium configuration. <a href="https://docs.tealium.com/server-side/data-sources/about-data-sources/" target="_blank">Learn More</a>
       </div>
     </div>
 
@@ -73,8 +72,7 @@
         pattern="^https:\/\/.*"
       />
       <div class="form-text">
-        Optional: Override the default Tealium Collect tag URL with your own custom
-        first-party data hosted file URL.
+        (Optional) Override the default Tealium Collect tag URL with your own custom first-party data hosted file URL, such as: https://example.co.uk/collect.min.js
       </div>
     </div>
 
@@ -89,8 +87,7 @@
         pattern="^https:\/\/.*"
       />
       <div class="form-text">
-        Optional: Override the default Tealium Collect event endpoint with your own
-        custom first-party data collection endpoint.
+        (Optional) Override the default Tealium Collect event endpoint with your own custom first-party data collection endpoint, such as: https://collect.example.co.uk/event
       </div>
     </div>
 
@@ -104,7 +101,7 @@
         maxlength="500"
       />
       <div class="form-text">
-        Optional: The name of a JavaScript variable to use as the data layer object.
+        (Optional) The name of a JavaScript variable to use as the data layer object. For example, enter 'digitalData' if you use this as your data layer object.  This extension will automatically use the second param in a _satellite.track call for <a href="https://docs.adobe.com/content/help/en/launch/using/reference/client-side-info/launch-object-reference.html#track" target="_blank">Direct Call</a> events.
       </div>
     </div>
 
@@ -118,7 +115,7 @@
         >Add Event Listener for adobeDataLayer</label
       >
       <div class="form-text">
-        Optional: Automatically track all events in adobeDataLayer.
+        (Optional) Automatically track events in adobeDataLayer.  Tracks both default and custom  <a href="https://experienceleague.adobe.com/docs/experience-manager-core-components/using/developing/data-layer/overview.html?lang=en" target="_blank">Adobe Client Data Layer</a> events.
       </div>
     </div>
 
