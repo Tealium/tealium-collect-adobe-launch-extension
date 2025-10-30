@@ -9,7 +9,7 @@
     "name": "Tealium, Inc",
     "email": "support@tealium.com"
   },
-  "exchangeUrl":"https://www.adobeexchange.com/experiencecloud.details.104217.html",
+  "exchangeUrl":"https://exchange.adobe.com/apps/ec/104217",
   "viewBasePath": "src/view/",
   "configuration": {
     "viewPath": "configuration/configuration.html",
@@ -57,9 +57,10 @@
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
         "properties": {}
-      },
+      }
+    },
     {
-      "name" : "track",
+      "name" : "track-acdl",
       "displayName" : "Track Event via ACDL",
       "libPath" : "src/lib/actions/track-acdl.js",
       "schema" : {
@@ -67,7 +68,6 @@
         "type": "object",
         "properties": {}
       }
-    }
     }
   ]
 }

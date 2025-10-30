@@ -79,8 +79,18 @@ module.exports = function(settings, event) {
   // ACDL provides the pushed object on event.message
   var message = event && typeof event.message === 'object' && !Array.isArray(event.message)
     ? event.message
-    : {};
-  var evtName = message.event || message.type || message.eventName || extensionSettings.defaultEventName || 'acdl_event';
+    : {};  
+
+  // Safely extract an event name with layered fallbacks
+  var evtName =
+    message.tealium_event ||                      // Tealium event (preferred)
+    message.event ||                              // Standard ACDL event field
+    (event && event.$rule && event.$rule.name) || // The name of the Launch rule firing this action
+    message.type ||                               // Non-standard variant
+    message.eventName ||                          // Another custom variant
+    extensionSettings.defaultEventName ||         // Configured fallback in extension settings
+    'adobe_launch_acdl_event';                    // Hardcoded final safety net
+
 
   // Build payload; include account/profile/datasource from settings
   var payload = {
