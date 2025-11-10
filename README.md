@@ -12,11 +12,11 @@ For more information on Tealium's CDH, please visit [Tealium's Learning Communit
 
 ## Quickstart Configuration
 
-1. Search for the "Tealium Collect" Extension in the Adobe Extension Catalog
-2. Click Install button to add this Extension
-3. Add a Rule and Action for "Tealium Collect"
-4. Enter the Tealium Account, Profile, and Data Source Key obtained from Tealium's CDH
-5. Publish
+1. In Adobe Launch, search for the "Tealium Collect" extension in the catalog.
+2. Click Install to add it to your property.
+3. Add a Rule and select Tealium Collect as the Action.
+4. Enter your Tealium Account, Profile, and Data Source Key (available in Tealium CDH).
+5. Publish your changes.
 
 
 ## Features
@@ -24,19 +24,43 @@ For more information on Tealium's CDH, please visit [Tealium's Learning Communit
 
 1. Custom Endpoint
 
-Configure with your first-party data collection endpoint.  Include the "/event" part of the URL.
+Configure the extension with your first-party Tealium data collection endpoint.
+Include the /event portion of the URL, for example: https://collect.example.com/event
 
 2. Custom Data Object
 
-This is a name of a global object to use for the data layer.
+Specify the name of the global object used as your site’s data layer.
+If the data layer is an array, the first element will be used.
 
 3. Support for Direct Call Rule with \_satellite.track
 
-This Extension also supports tracking events that were initiated via [\_satellite.track](https://docs.adobe.com/content/help/en/launch/using/reference/client-side-info/launch-object-reference.html) function call.  The first param will be the event name and the second param will be used for the data layer.  The Tealium Collect Extension also collects the \_satellite.buildInfo information and adds to the data layer.
+* The first parameter is used as the event name.
+* The second parameter is merged into the data layer and sent to Tealium Collect.
+* The extension automatically includes metadata from \_satellite.buildInfo in the event payload.
 
-4. Event listener for "adobeDataLayer:event"
+4. Event listener for "adobeDataLayer:event" (Track Event Action only)
 
-Option to add an event listener for all events set via [adobeDataLayer.push](https://github.com/adobe/adobe-client-data-layer).  The Adobe Client Data Layer is documented [here](https://experienceleague.adobe.com/docs/experience-manager-core-components/using/developing/data-layer/overview.html?lang=en#events).
+Optionally add an event listener for all events pushed via the Adobe Client Data Layer (ACDL). The Adobe Client Data Layer is documented [here](https://experienceleague.adobe.com/docs/experience-manager-core-components/using/developing/data-layer/overview.html?lang=en#events).
+
+5. "Track Event via ACDL" Action
+
+The extension now includes a dedicated Track Event via ACDL action for use with rules based on ACDL triggers.
+
+How it works:
+
+* When a rule fires, the ACDL event object (event.message) is automatically passed to Tealium Collect.
+* The event name is determined in this order of priority:
+** tealium_event
+** event
+** Launch rule name
+** type
+** eventName
+* The extension’s configured account, profile, and data source settings are automatically applied.
+* Tealium Collect is loaded once per page, and additional events are queued until it’s ready.
+
+When to use:
+* Use this action if your property already uses the ACDL extension and rules triggered by ACDL events.
+* It provides rule-level control (including conditions and exclusions) rather than listening to all data layer pushes globally.
 
 
 ## Copyright and license
