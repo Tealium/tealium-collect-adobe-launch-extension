@@ -63,40 +63,6 @@ When to use:
 * It provides rule-level control (including conditions and exclusions) rather than listening to all data layer pushes globally.
 
 
-# Changelog
-
-All notable changes to the **Tealium Collect Extension for Adobe Launch** are documented here.
-
-## [1.1.7] – November 2025
-### Added
-- **Track Event via ACDL** action for rule-level event handling using the Adobe Client Data Layer (ACDL).
-  - Passes the ACDL event object (`event.message`) directly to Tealium Collect.
-  - Automatically derives event name from `tealium_event`, `event`, Launch rule name, `type`, or `eventName`.
-  - Applies configured extension settings (account, profile, data source) automatically.
-  - Loads Tealium Collect once per page and queues subsequent events until ready.
-- Improved overall handling of ACDL-triggered rules to allow finer control and custom conditions/exclusions.
-
-### Fixed
-- Minor logging and queue-timing adjustments during Collect library initialization.
-
----
-
-## [1.1.5] – Earlier
-### Added
-- Configuration option for **custom endpoint** to support first-party Tealium Collect URLs.
-- Support for **event listener mode** (`adobeDataLayer:event`) to automatically capture ACDL pushes.
-
----
-
-## [1.1.0] – Initial Release
-### Added
-- Base functionality for Tealium Collect integration.
-- Support for `_satellite.track()` direct calls.
-  - Uses the first parameter as the event name and the second parameter as the data layer.
-- Support for global data layer object (e.g., `window.dataLayer`).
-
-
-
 ## Copyright and license
 
 Copyright 2025 Tealium, Inc. All rights reserved.
